@@ -18,7 +18,7 @@
     </listener>
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>/WEB-INF/config/applicationContext.xml,/WEB-INF/config/Security-Config.xml</param-value>
+        <param-value>/WEB-INF/config/applicationContext.xml</param-value>
     </context-param>
 
     <servlet>

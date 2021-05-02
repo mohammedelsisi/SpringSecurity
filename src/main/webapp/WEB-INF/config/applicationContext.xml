@@ -12,5 +12,7 @@
             xmlns:p="http://www.springframework.org/schema/p"
             xmlns:c="http://www.springframework.org/schema/c">
     <bean id="print" class="org.service.PrintingService"/>
+    <bean id="security" class="org.SecurityConfig"/>
+    <context:annotation-config/>
 
 </beans>
