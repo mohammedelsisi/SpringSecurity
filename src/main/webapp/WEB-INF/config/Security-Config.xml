@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:security="http://www.springframework.org/schema/security"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/context
+            http://www.springframework.org/schema/context/spring-context.xsd
+            http://www.springframework.org/schema/aop
+            https://www.springframework.org/schema/aop/spring-aop.xsd
+            http://www.springframework.org/schema/security
+            http://www.springframework.org/schema/security/spring-security.xsd">
+
+
+    <!--    <security:global-method-security secured-annotations="enabled" jsr250-annotations="enabled" pre-post-annotations="enabled">-->
+    <!--        <security:protect-pointcut expression="execution(* org.example.service.PrintingService.sayHiToManager(..))" access="ROLE_MANAGER"/>-->
+    <!--    </security:global-method-security>-->
+
+
+    <security:authentication-manager erase-credentials="true">
+        <security:authentication-provider>
+            <security:user-service>
+                <security:user name="user" password="$2a$10$iBEjZO84qsjEoJ3ONUcnTOZX9Y1DXj.tm3VLgUNak/Ae0qI12uFUi" authorities="ROLE_USER"/>
+                <security:user name="admin" password="$2a$10$iBEjZO84qsjEoJ3ONUcnTOZX9Y1DXj.tm3VLgUNak/Ae0qI12uFUi" authorities="ROLE_USER,ROLE_ADMIN"/>
+                <security:user name="manager" password="$2a$10$iBEjZO84qsjEoJ3ONUcnTOZX9Y1DXj.tm3VLgUNak/Ae0qI12uFUi" authorities="ROLE_USER,ROLE_ADMIN,ROLE_MANAGER"/>
+            </security:user-service>
+            <security:password-encoder hash="bcrypt"/>
+        </security:authentication-provider>
+    </security:authentication-manager>
+
+
+    <!--    Authorization-->
+    <security:http auto-config="true">
+
+        <security:access-denied-handler error-page="/error"/>
+        <!--        <security:intercept-url pattern="/admin/*"  access="hasRole('ROLE_ADMIN')"/>-->
+        <security:intercept-url pattern="/admin/**"  access="hasRole('ROLE_ADMIN')"/>
+        <security:intercept-url pattern="/manager/**" access="hasRole('ROLE_MANAGER')"/>
+
+        <security:session-management>
+            <security:concurrency-control max-sessions="1" error-if-maximum-exceeded="true"/>
+        </security:session-management>
+
+    </security:http>
+
+</beans>
+
