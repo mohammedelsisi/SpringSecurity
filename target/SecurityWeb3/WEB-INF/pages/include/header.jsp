@@ -48,9 +48,18 @@
             <li class="nav-item">
                 <a class="nav-link"  href="${pageContext.request.contextPath}/cookie">cookie Value</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link"  href="${pageContext.request.contextPath}/logout">logout</a>
-            </li>
+            <security:authorize access="hasAnyAuthority('ROLE_ADMIN','ROLE_MANAGER','ROLE_USER')">
+                <li class="nav-item">
+                    <a class="nav-link"  href="${pageContext.request.contextPath}/logout">logout</a>
+                </li>
+            </security:authorize>
+
         </ul>
     </div>
 </nav>
+<h2 align="center">
+    <security:authorize access="hasAnyAuthority('ROLE_ADMIN','ROLE_MANAGER')">
+        Welcome <security:authentication property="principal.username"/>
+    </security:authorize>
+
+</h2>
