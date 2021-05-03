@@ -31,9 +31,9 @@
 <!--    </security:authentication-manager>-->
 
 
-    <!--    Authorization-->
+<!--        Authorization-->
 <!--    <security:http auto-config="true">-->
-
+<!--    <security:form-login></security:form-login>-->
 <!--        <security:access-denied-handler error-page="/error"/>-->
 <!--        &lt;!&ndash;        <security:intercept-url pattern="/admin/*"  access="hasRole('ROLE_ADMIN')"/>&ndash;&gt;-->
 <!--        <security:intercept-url pattern="/admin/**"  access="hasRole('ROLE_ADMIN')"/>-->

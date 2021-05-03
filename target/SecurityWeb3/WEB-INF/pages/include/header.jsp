@@ -48,6 +48,9 @@
             <li class="nav-item">
                 <a class="nav-link"  href="${pageContext.request.contextPath}/cookie">cookie Value</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link"  href="${pageContext.request.contextPath}/logout">logout</a>
+            </li>
         </ul>
     </div>
 </nav>

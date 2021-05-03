@@ -24,6 +24,7 @@
     <mvc:view-controller path="/manager/contact" view-name="ContactUs"/>
     <mvc:view-controller path="/upload" view-name="Upload"/>
     <mvc:view-controller path="/error" view-name="error"/>
+    <mvc:view-controller path="/login" view-name="login"/>
 
 
 

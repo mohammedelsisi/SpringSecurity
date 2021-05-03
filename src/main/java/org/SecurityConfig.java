@@ -40,6 +40,32 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/admin/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_MANAGER")
         /*     .antMatchers("/**").permitAll()   default      */
                 .and()
-                .formLogin();
+//                 .httpBasic();
+                .formLogin()
+                    .loginPage("/login")
+                  //  .loginProcessingUrl("/loginProcess")
+                    .usernameParameter("userName")
+                    .passwordParameter("password")
+                    //.permitAll()
+                .and()
+                .logout()
+                    .logoutUrl("/logout")    // links must start with forward slash
+                    .logoutSuccessUrl("/login")
+                    .deleteCookies("JSESSIONID")
+                    .permitAll()
+                .and()
+                .csrf()
+                    .disable()    // disable to be able to log out with a GET Request
+                .exceptionHandling()
+                     .accessDeniedPage("/error")
+                .and()
+                .rememberMe()
+                    .tokenValiditySeconds(60*60*24*14)
+                    .key("key")
+//                    .rememberMeParameter("remember-me");    /* default remember me value   */
+                .and()
+                .sessionManagement()
+                    .maximumSessions(1);    // HttpSessionEventPublisher is needed to listen of the session destruction
+
     }
 }
