@@ -48,7 +48,7 @@
             <li class="nav-item">
                 <a class="nav-link"  href="${pageContext.request.contextPath}/cookie">cookie Value</a>
             </li>
-            <security:authorize access="hasAnyAuthority('ROLE_ADMIN','ROLE_MANAGER','ROLE_USER')">
+            <security:authorize access="isAuthenticated()">
                 <li class="nav-item">
                     <a class="nav-link"  href="${pageContext.request.contextPath}/logout">logout</a>
                 </li>
@@ -61,5 +61,4 @@
     <security:authorize access="hasAnyAuthority('ROLE_ADMIN','ROLE_MANAGER')">
         Welcome <security:authentication property="principal.username"/>
     </security:authorize>
-
 </h2>
